@@ -17,7 +17,7 @@ ui->setupUi(this);
     out = new Out;
     ser = new Port;
       connect (ser, Port::gotNewData, out, Out::putData);
-       connect (this, portChanged, ser, Port::changeBaudRate);
+      connect (this, baudRateChanged, ser, Port::changeBaudRate);
   //  out->setEnabled(false);
     setCentralWidget(out);
 
@@ -31,7 +31,7 @@ for ( auto x : QSerialPortInfo::standardBaudRates() )
      QAction* action = baudRateMenu->addAction(QString::number(x) );
     connect(action, &QAction::triggered, [=]()
     {
-      emit portChanged(x);
+      emit baudRateChanged(x);
 
     });
 }

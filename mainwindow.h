@@ -21,7 +21,9 @@ public:
     void putData(const QByteArray &data);
 
 signals:
+    baudRateChanged(qint32);
     portChanged(qint32 newport);
+
 
 private:
     Ui::MainWindow *ui;
