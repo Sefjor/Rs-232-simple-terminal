@@ -20,7 +20,8 @@ public:
     ~MainWindow();
     void putData(const QByteArray &data);
 
-private slots:
+signals:
+    portChanged(qint32 newport);
 
 private:
     Ui::MainWindow *ui;

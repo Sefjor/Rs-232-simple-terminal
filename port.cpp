@@ -26,3 +26,7 @@ Port::Port(): QObject()
      QByteArray data = serial->readAll();
      emit gotNewData(data);
  }
+void Port::changeBaudRate(qint32 rate)
+{
+    serial->setBaudRate(rate);
+}
