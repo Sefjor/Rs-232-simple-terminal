@@ -25,7 +25,11 @@ public:
 signals:
     baudRateChanged(qint32);
     portChanged(QString);
+    timeToSend(QByteArray);
 
+
+private slots:
+    void on_Send_clicked();
 
 private:
     Ui::MainWindow* ui;

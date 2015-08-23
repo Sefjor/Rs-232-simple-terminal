@@ -35,3 +35,7 @@ void Port::changePort(QString port)
     serial->close();
     serial->open(QIODevice::ReadWrite);
 }
+void Port::writeData(QByteArray data)
+{
+    serial->write(data);
+}

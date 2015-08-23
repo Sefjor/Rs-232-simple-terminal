@@ -14,6 +14,7 @@ public slots:
     void myRead();
     void changeBaudRate(qint32);
      void changePort(QString);
+     void writeData(QByteArray);
 signals:
     void gotNewData(QByteArray data);
 };

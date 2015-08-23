@@ -4,7 +4,7 @@
 #include <QThread>
 #include <QtSerialPort/QSerialPortInfo>
 #include "port.h"
-#include <QScrollBar>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,6 +16,7 @@ ui->setupUi(this);
       connect (ser, Port::gotNewData, this, putData);
       connect (this, baudRateChanged, ser, Port::changeBaudRate);
       connect (this, portChanged, ser, Port::changePort);
+      connect (this, timeToSend, ser, Port::writeData );
    // setCentralWidget(out);
     out->setMaximumHeight(100);
 
@@ -55,10 +56,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//  ui->statusBar->showMessage(QString::number( ser->serial->baudRate() ) );
+void MainWindow::on_Send_clicked()
+{
+    QByteArray data;
+    data = ui->tex->toPlainText().toLocal8Bit();
+    emit timeToSend(data);
 
-
-
-
-
-
+}
