@@ -15,11 +15,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    out.cpp \
     port.cpp
 
 HEADERS  += mainwindow.h \
-    out.h \
     port.h
 
 FORMS    += mainwindow.ui

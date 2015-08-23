@@ -33,8 +33,8 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
-     Out* out;
-     Port* ser;
+    Out* out;
+    Port* ser;
     QSerialPort *serial;
     QString currentPort {};
 };

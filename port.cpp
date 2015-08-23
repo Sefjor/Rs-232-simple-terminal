@@ -11,19 +11,15 @@ Port::Port(): QObject()
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
-
-    //ui->statusBar->showMessage(tr("Connected to %1").arg(currentPort));
     serial->open(QIODevice::ReadWrite);
-
-     connect(serial, SIGNAL( readyRead() ), this, SLOT( myRead() ) );
+    connect(serial, SIGNAL( readyRead() ), this, SLOT( myRead() ) );
 }
 
-
- void Port::myRead()
- {
-     QByteArray data = serial->readAll();
-     emit gotNewData(data);
- }
+void Port::myRead()
+{
+    QByteArray data = serial->readAll();
+    emit gotNewData(data);
+}
 void Port::changeBaudRate(qint32 rate)
 {
     serial->setBaudRate(rate);
