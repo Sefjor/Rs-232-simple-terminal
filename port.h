@@ -6,6 +6,8 @@
 class Port : public QObject
 {
     Q_OBJECT
+private:
+   QSerialPort* serial;
 public:
     Port();
 public slots:
@@ -14,8 +16,5 @@ public slots:
      void changePort(QString);
 signals:
     void gotNewData(QByteArray data);
- private:
-    QSerialPort *serial;
-    QString currentPort {};
 };
 #endif // PORT_H

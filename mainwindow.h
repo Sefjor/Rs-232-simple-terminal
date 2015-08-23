@@ -21,13 +21,14 @@ public:
     ~MainWindow();
     void putData(const QByteArray &data);
 
+
 signals:
     baudRateChanged(qint32);
     portChanged(QString);
 
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
      Out* out;
      Port* ser;
     QSerialPort *serial;

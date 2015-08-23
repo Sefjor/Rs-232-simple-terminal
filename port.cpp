@@ -5,9 +5,7 @@
 Port::Port(): QObject()
 {
     serial = new QSerialPort(this);
-    if (currentPort == "")
-        currentPort = "com3";
-    serial->setPortName(currentPort);
+    serial->setPortName("com3");
     serial->setBaudRate(115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
@@ -17,7 +15,7 @@ Port::Port(): QObject()
     //ui->statusBar->showMessage(tr("Connected to %1").arg(currentPort));
     serial->open(QIODevice::ReadWrite);
 
-     connect(serial, SIGNAL( readyRead()), this, SLOT( myRead() ) );
+     connect(serial, SIGNAL( readyRead() ), this, SLOT( myRead() ) );
 }
 
 
@@ -30,6 +28,7 @@ void Port::changeBaudRate(qint32 rate)
 {
     serial->setBaudRate(rate);
 }
+
 void Port::changePort(QString port)
 {
     serial->setPortName(port);
