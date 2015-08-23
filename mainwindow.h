@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtSerialPort/QSerialPort>
 #include <QScrollBar>
+#include <QString>
 
 class Out;
 class Port;
@@ -22,7 +23,7 @@ public:
 
 signals:
     baudRateChanged(qint32);
-    portChanged(qint32 newport);
+    portChanged(QString);
 
 
 private:

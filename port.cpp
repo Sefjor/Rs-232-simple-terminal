@@ -4,7 +4,7 @@
 #include <QObject>
 Port::Port(): QObject()
 {
-    serial = new QSerialPort();
+    serial = new QSerialPort(this);
     if (currentPort == "")
         currentPort = "com3";
     serial->setPortName(currentPort);
@@ -29,4 +29,10 @@ Port::Port(): QObject()
 void Port::changeBaudRate(qint32 rate)
 {
     serial->setBaudRate(rate);
+}
+void Port::changePort(QString port)
+{
+    serial->setPortName(port);
+    serial->close();
+    serial->open(QIODevice::ReadWrite);
 }

@@ -9,9 +9,9 @@ class Port : public QObject
 public:
     Port();
 public slots:
-
     void myRead();
     void changeBaudRate(qint32);
+     void changePort(QString);
 signals:
     void gotNewData(QByteArray data);
  private:

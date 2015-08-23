@@ -5,7 +5,6 @@
 #include <QThread>
 #include <QtSerialPort/QSerialPortInfo>
 #include "port.h"
-#include <QString>
 
 
 
@@ -18,6 +17,7 @@ ui->setupUi(this);
     ser = new Port;
       connect (ser, Port::gotNewData, out, Out::putData);
       connect (this, baudRateChanged, ser, Port::changeBaudRate);
+      connect (this, portChanged, ser, Port::changePort);
   //  out->setEnabled(false);
     setCentralWidget(out);
 
@@ -42,7 +42,7 @@ QMenu* portMenu = ui->menuBar->addMenu("Set port");
         QAction* action = portMenu->addAction( info.portName());
         connect(action, &QAction::triggered, [=]()
         {
-            //serial->setPortName(currentPort);
+            emit portChanged( info.portName() );
 
         });
     }
