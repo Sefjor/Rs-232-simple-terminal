@@ -30,7 +30,7 @@ for ( auto x : QSerialPortInfo::standardBaudRates() )
      QAction* action = baudRateMenu->addAction(QString::number(x) );
     connect(action, &QAction::triggered, [=]()
     {
-      emit portChanged();
+    //  emit portChanged(x);
 
     });
 }
