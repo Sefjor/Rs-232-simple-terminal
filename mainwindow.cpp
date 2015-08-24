@@ -6,6 +6,7 @@
 #include <QString>
 #include <string>
 #include <sstream>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -44,6 +45,19 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::putData(const QByteArray &data)
 {
     ui->myTxt->insertPlainText(QString(data));
+
+   // std::string s = QString(data).toUtf8().constData();
+    std::string s = "ab";
+    std::ostringstream ss;
+    for (unsigned int c : s)
+       ss << " " << std::hex << c;
+
+
+    ui->statusBar->showMessage( QString::fromStdString(ss.str() ) );
+
+
+    //  ui->statusBar->showMessage( QString::fromStdString(bytes) );
+
 }
 
 MainWindow::~MainWindow()
@@ -65,13 +79,10 @@ void MainWindow::on_Send_clicked()
         {
             bytes += c;
         }
-      //  ui->statusBar->showMessage( QString::fromStdString(bytes) );
         data = QString::fromStdString(bytes).toLocal8Bit();
     }
      else
     data = ui->tex->toPlainText().toLocal8Bit();
-
     ui->myTxt->insertPlainText("Sent: " + QString(data) + "\n");
     emit timeToSend(data);
-
 }
