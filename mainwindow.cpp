@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "out.h"
 #include <QThread>
 #include <QtSerialPort/QSerialPortInfo>
 #include "port.h"
@@ -11,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    out = new Out;
     ser = new Port;
     connect (ser, Port::gotNewData, this, putData);
     connect (this, baudRateChanged, ser, Port::changeBaudRate);
@@ -49,12 +47,17 @@ void MainWindow::putData(const QByteArray &data)
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }
 
 void MainWindow::on_Send_clicked()
 {
     QByteArray data;
     data = ui->tex->toPlainText().toLocal8Bit();
+    ui->myTxt->insertPlainText("Sent: " + QString(data) + "\n");
+    QString sValue = "FF";
     emit timeToSend(data);
+    ui->statusBar->showMessage( QString::number( ui->buttonGroup->checkedId() ) );
+
 
 }

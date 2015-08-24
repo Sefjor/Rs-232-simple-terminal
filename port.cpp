@@ -14,7 +14,6 @@ Port::Port(): QObject()
     serial->open(QIODevice::ReadWrite);
     connect(serial, SIGNAL( readyRead() ), this, SLOT( myRead() ) );
 }
-
 void Port::myRead()
 {
     QByteArray data = serial->readAll();
@@ -24,7 +23,6 @@ void Port::changeBaudRate(qint32 rate)
 {
     serial->setBaudRate(rate);
 }
-
 void Port::changePort(QString port)
 {
     serial->setPortName(port);
