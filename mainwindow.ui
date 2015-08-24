@@ -26,6 +26,9 @@
       <height>161</height>
      </rect>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>

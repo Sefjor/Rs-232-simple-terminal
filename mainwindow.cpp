@@ -44,20 +44,12 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 void MainWindow::putData(const QByteArray &data)
 {
-    ui->myTxt->insertPlainText(QString(data));
-
-   // std::string s = QString(data).toUtf8().constData();
-    std::string s = "ab";
+    std::string s = QString(data).toUtf8().constData();
     std::ostringstream ss;
     for (unsigned int c : s)
-       ss << " " << std::hex << c;
-
-
-    ui->statusBar->showMessage( QString::fromStdString(ss.str() ) );
-
-
-    //  ui->statusBar->showMessage( QString::fromStdString(bytes) );
-
+     ss << " " << std::hex << c;
+      ui->myTxt->insertPlainText(QString::fromStdString(ss.str() ));
+   // ui->statusBar->showMessage( QString::fromStdString(ss.str() ) );
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +75,6 @@ void MainWindow::on_Send_clicked()
     }
      else
     data = ui->tex->toPlainText().toLocal8Bit();
-    ui->myTxt->insertPlainText("Sent: " + QString(data) + "\n");
+    ui->myTxt->insertPlainText("\n Sent: " + QString(data) + "\n");
     emit timeToSend(data);
 }
