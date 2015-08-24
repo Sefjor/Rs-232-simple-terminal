@@ -4,6 +4,8 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include "port.h"
 #include <QString>
+#include <string>
+#include <sstream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -53,11 +55,23 @@ MainWindow::~MainWindow()
 void MainWindow::on_Send_clicked()
 {
     QByteArray data;
+     if (ui->buttonGroup->checkedId() == -3 )
+     {
+        std::string hex_chars = ui->tex->toPlainText().toUtf8().constData() ;
+        std::istringstream hex_chars_stream(hex_chars);
+        std::string bytes;
+        unsigned int c;
+        while (hex_chars_stream >> std::hex >> c)
+        {
+            bytes += c;
+        }
+      //  ui->statusBar->showMessage( QString::fromStdString(bytes) );
+        data = QString::fromStdString(bytes).toLocal8Bit();
+    }
+     else
     data = ui->tex->toPlainText().toLocal8Bit();
-    ui->myTxt->insertPlainText("Sent: " + QString(data) + "\n");
-    QString sValue = "FF";
-    emit timeToSend(data);
-    ui->statusBar->showMessage( QString::number( ui->buttonGroup->checkedId() ) );
 
+    ui->myTxt->insertPlainText("Sent: " + QString(data) + "\n");
+    emit timeToSend(data);
 
 }
