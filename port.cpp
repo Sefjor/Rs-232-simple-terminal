@@ -1,7 +1,5 @@
 #include "port.h"
-#include <QThread>
-#include <QWidget>
-#include <QObject>
+
 Port::Port(): QObject()
 {
   serial = new QSerialPort(this);

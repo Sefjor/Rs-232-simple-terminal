@@ -3,6 +3,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QObject>
+
 class Port : public QObject
 {
   Q_OBJECT

@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "mainwindow.h"
+
 #include <QMainWindow>
 #include <QtSerialPort/QSerialPort>
-#include <QScrollBar>
 #include <QString>
 
 class Port;

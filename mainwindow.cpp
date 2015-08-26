@@ -1,12 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QThread>
-#include <QtSerialPort/QSerialPortInfo>
 #include "port.h"
-#include <QString>
 #include <string>
 #include <sstream>
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -32,9 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
         });
     }
   QMenu* portMenu = ui->menuBar->addMenu("Set port");
-  foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
+  foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts() )
     {
-      QAction* action = portMenu->addAction( info.portName());
+      QAction* action = portMenu->addAction( info.portName() );
       connect(action, &QAction::triggered, [=]()
       {
           emit portChanged( info.portName() );
@@ -48,8 +45,7 @@ void MainWindow::putData(const QByteArray &data)
   std::ostringstream ss;
   for (unsigned int c : s)
     ss << " " << std::hex << c;
-  ui->myTxt->insertPlainText(QString::fromStdString(ss.str() ));
-  // ui->statusBar->showMessage( QString::fromStdString(ss.str() ) );
+  ui->myTxt->insertPlainText( QString::fromStdString( ss.str() ) );
 }
 
 MainWindow::~MainWindow()
