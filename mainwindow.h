@@ -6,37 +6,35 @@
 #include <QScrollBar>
 #include <QString>
 
-class Out;
 class Port;
 namespace Ui {
-class MainWindow;
+  class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-    void putData(const QByteArray &data);
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
+  void putData(const QByteArray &data);
 
 
 signals:
-    baudRateChanged(qint32);
-    portChanged(QString);
-    timeToSend(QByteArray);
+  baudRateChanged(qint32);
+  portChanged(QString);
+  timeToSend(QByteArray);
 
 
 private slots:
-    void on_Send_clicked();
+  void on_Send_clicked();
 
 private:
-    Ui::MainWindow* ui;
-    Out* out;
-    Port* ser;
-    QSerialPort *serial;
-    QString currentPort {};
+  Ui::MainWindow* ui;
+  Port* ser;
+  QSerialPort *serial;
+  QString currentPort {};
 };
 
 #endif // MAINWINDOW_H

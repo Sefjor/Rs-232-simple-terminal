@@ -5,17 +5,17 @@
 #include <QObject>
 class Port : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 private:
-   QSerialPort* serial;
+  QSerialPort* serial;
 public:
-    Port();
+  Port();
 public slots:
-    void myRead();
-    void changeBaudRate(qint32);
-     void changePort(QString);
-     void writeData(QByteArray);
+  void myRead();
+  void changeBaudRate(qint32);
+  void changePort(QString);
+  void writeData(QByteArray);
 signals:
-    void gotNewData(QByteArray data);
+  void gotNewData(QByteArray data);
 };
 #endif // PORT_H
