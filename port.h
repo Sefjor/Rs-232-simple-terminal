@@ -11,6 +11,7 @@ private:
   QSerialPort* serial;
 public:
   Port();
+  ~Port();
 public slots:
   void myRead();
   void changeBaudRate(qint32);

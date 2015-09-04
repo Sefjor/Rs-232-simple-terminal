@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtSerialPort/QSerialPort>
 #include <QString>
+#include <QThread>
 
 class Port;
 namespace Ui {
@@ -32,7 +33,7 @@ private slots:
 private:
   Ui::MainWindow* ui;
   Port* ser;
-  QSerialPort *serial;
+  QThread thr;
   QString currentPort {};
 };
 

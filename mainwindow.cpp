@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QThread>
 #include "port.h"
 #include <string>
 #include <sstream>
@@ -15,9 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
   connect (this, baudRateChanged, ser, Port::changeBaudRate);
   connect (this, portChanged, ser, Port::changePort);
   connect (this, timeToSend, ser, Port::writeData );
-  QThread *thread = new QThread();
-  ser->moveToThread(thread); //Отдельный поток для работы с последовательным портом
-  thread->start();
+  ser->moveToThread(&thr); //Отдельный поток для работы с последовательным портом
+  thr.start();
 
   QMenu* baudRateMenu = ui->menuBar->addMenu("Set baud rate");
   for ( auto x : QSerialPortInfo::standardBaudRates() )
@@ -29,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
         });
     }
   QMenu* portMenu = ui->menuBar->addMenu("Set port");
-  foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts() )
+  for (auto info: QSerialPortInfo::availablePorts() )
     {
       QAction* action = portMenu->addAction( info.portName() );
       connect(action, &QAction::triggered, [=]()
@@ -50,8 +48,10 @@ void MainWindow::putData(const QByteArray &data)
 
 MainWindow::~MainWindow()
 {
+  delete ser;
+  thr.quit();
+  thr.wait();
   delete ui;
-
 }
 
 void MainWindow::on_Send_clicked()

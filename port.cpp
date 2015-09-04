@@ -12,6 +12,11 @@ Port::Port(): QObject()
   serial->open(QIODevice::ReadWrite);
   connect(serial, SIGNAL( readyRead() ), this, SLOT( myRead() ) );
 }
+Port::~Port()
+{
+    serial->close();
+}
+
 void Port::myRead()
 {
   QByteArray data = serial->readAll();
