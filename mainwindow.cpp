@@ -70,7 +70,9 @@ void MainWindow::on_Send_clicked()
       data = QString::fromStdString(bytes).toLocal8Bit();
     }
   else
+    {
     data = ui->tex->toPlainText().toLocal8Bit();
+    }
   ui->myTxt->insertPlainText("\n Sent: " + QString(data) + "\n");
   emit timeToSend(data);
 }

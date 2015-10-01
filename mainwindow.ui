@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
+    <width>493</width>
     <height>360</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -59,14 +65,14 @@
       <x>10</x>
       <y>10</y>
       <width>451</width>
-      <height>111</height>
+      <height>101</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Send">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>130</y>
       <width>75</width>
       <height>23</height>
@@ -79,11 +85,17 @@
    <widget class="QRadioButton" name="r1">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>90</x>
       <y>130</y>
-      <width>82</width>
+      <width>61</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="text">
      <string>ASCII</string>
@@ -98,7 +110,7 @@
    <widget class="QRadioButton" name="r2">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>150</x>
       <y>130</y>
       <width>51</width>
       <height>17</height>
@@ -114,9 +126,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>200</x>
       <y>130</y>
-      <width>251</width>
+      <width>291</width>
       <height>21</height>
      </rect>
     </property>
@@ -131,8 +143,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>466</width>
-     <height>21</height>
+     <width>493</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -141,6 +153,10 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
  </buttongroups>
 </ui>

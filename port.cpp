@@ -14,7 +14,7 @@ Port::Port(): QObject()
 }
 Port::~Port()
 {
-    serial->close();
+   serial->close();
 }
 
 void Port::myRead()
